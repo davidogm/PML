@@ -104,7 +104,7 @@ Matrix and Statistics</p>
 <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         
 Reference</p>
 
-<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prediction   
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prediction  <br>  
 A    B    C    D    E</p>
 
 <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         A
@@ -203,7 +203,7 @@ Matrix and Statistics</b></p>
 <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         
 Reference</p>
 
-<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prediction   
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prediction <br>   
 A    B    C    D    E</p>
 
 <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         A
@@ -384,10 +384,7 @@ Accuracy      1.0000   0.9965   0.9932   0.9924   1.0000</p>
 <h2>
 <a id="user-content-conclusions" class="anchor" href="#conclusions-and-test-data-submit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusions and Test Data Submit</h2>
 
-<p>As can be seen from the confusion matrix this model is very accurate.  I did experiment with PCA 
-and other models, but did not get as good of accuracy. Because my test data was around 99% 
-accurate I expected nearly all of the submitted test cases to be correct.  It turned out they 
-were all correct.</p>
+<p> It is possible to observe that this model is very accurate.  The confusion matrices saw it, especially the second one as the first one is only for the training set and the second one take into account the testing set</p>
 
   
 </html>
