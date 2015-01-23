@@ -1,0 +1,110 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    
+    
+    <title>jhi-practical-machine-learning/PracticalMachineLearning.RMD at master · jeffheaton/jhi-practical-machine-learning</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="jeffheaton/jhi-practical-machine-learning" name="twitter:title" /><meta content="jhi-practical-machine-learning - My project for the Johns Hopkins Practical Machine Learning course in the Data Science specialization " name="twitter:description" /><meta content="https://avatars2.githubusercontent.com/u/462761?v=3&amp;s=400" name="twitter:image:src" />
+<meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://avatars2.githubusercontent.com/u/462761?v=3&amp;s=400" property="og:image" /><meta content="jeffheaton/jhi-practical-machine-learning" property="og:title" /><meta content="https://github.com/jeffheaton/jhi-practical-machine-learning" property="og:url" /><meta content="jhi-practical-machine-learning - My project for the Johns Hopkins Practical Machine Learning course in the Data Science specialization " property="og:description" />
+
+      <meta name="browser-stats-url" content="/_stats">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    <link rel="conduit-xhr" href="https://ghconduit.com:25035">
+    <link rel="xhr-socket" href="/_sockets">
+    <meta name="pjax-timeout" content="1000">
+    <link rel="sudo-modal" href="/sessions/sudo_modal">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_source" data-pjax-transient>
+      <meta name="google-analytics" content="UA-3769691-2">
+
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="4DE69B62:5367:2F35A3B:54C17C1D" name="octolytics-dimension-request_id" /><meta content="7627730" name="octolytics-actor-id" /><meta content="davidogm" name="octolytics-actor-login" /><meta content="78b7ffa34543a3ef922dee9272fbcd081025f3c06d9f7aaa9334fee7712b8b27" name="octolytics-actor-hash" />
+    
+    <meta content="Rails, view, blob#show" name="analytics-event" />
+
+    
+    
+
+
+<div class="highlight highlight-r"><pre>library(<span class="pl-vo">Hmisc</span>)
+library(<span class="pl-vo">caret</span>)
+library(<span class="pl-vo">randomForest</span>)
+library(<span class="pl-vo">foreach</span>)
+library(<span class="pl-vo">doParallel</span>)
+set.seed(<span class="pl-c1">2048</span>)
+options(<span class="pl-v">warn</span><span class="pl-k">=</span><span class="pl-k">-</span><span class="pl-c1">1</span>)</pre></div>
+
+<p>First, I loaded the data both from the provided training and test data provided by COURSERA.
+Some values contained a "#DIV/0!" that I replaced with an NA value.</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-vo">training_data</span> <span class="pl-k">&lt;-</span> read.csv(<span class="pl-s1"><span class="pl-pds">"</span>pml-training.csv<span class="pl-pds">"</span></span>, <span class="pl-v">na.strings</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>#DIV/0!<span class="pl-pds">"</span></span>) )
+<span class="pl-vo">evaluation_data</span> <span class="pl-k">&lt;-</span> read.csv(<span class="pl-s1"><span class="pl-pds">"</span>pml-testing.csv<span class="pl-pds">"</span></span>, <span class="pl-v">na.strings</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>#DIV/0!<span class="pl-pds">"</span></span>) )</pre></div>
+
+<p>I also casted all columns 8 to the end to be numeric.</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-k">for</span>(<span class="pl-vo">i</span> <span class="pl-k">in</span> c(<span class="pl-c1">8</span><span class="pl-k">:</span>ncol(<span class="pl-vo">training_data</span>)<span class="pl-k">-</span><span class="pl-c1">1</span>)) {<span class="pl-vo">training_data</span>[,<span class="pl-vo">i</span>] <span class="pl-k">=</span> as.numeric(as.character(<span class="pl-vo">training_data</span>[,<span class="pl-vo">i</span>]))}
+
+<span class="pl-k">for</span>(<span class="pl-vo">i</span> <span class="pl-k">in</span> c(<span class="pl-c1">8</span><span class="pl-k">:</span>ncol(<span class="pl-vo">evaluation_data</span>)<span class="pl-k">-</span><span class="pl-c1">1</span>)) {<span class="pl-vo">evaluation_data</span>[,<span class="pl-vo">i</span>] <span class="pl-k">=</span> as.numeric(as.character(<span class="pl-vo">evaluation_data</span>[,<span class="pl-vo">i</span>]))}</pre></div>
+
+<p>Some columns were mostly blank.  These did not contribute well to the prediction.  I chose a feature
+set that only included complete columns.  We also remove user name, timestamps and windows.  </p>
+
+<p>Determine and display out feature set.</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-vo">feature_set</span> <span class="pl-k">&lt;-</span> colnames(<span class="pl-vo">training_data</span>[colSums(is.na(<span class="pl-vo">training_data</span>)) <span class="pl-k">==</span> <span class="pl-c1">0</span>])[<span class="pl-k">-</span>(<span class="pl-c1">1</span><span class="pl-k">:</span><span class="pl-c1">7</span>)]
+<span class="pl-vo">model_data</span> <span class="pl-k">&lt;-</span> <span class="pl-vo">training_data</span>[<span class="pl-vo">feature_set</span>]
+<span class="pl-vo">feature_set</span></pre></div>
+
+<p>We now have the model data built from our feature set.</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-vo">idx</span> <span class="pl-k">&lt;-</span> createDataPartition(<span class="pl-v">y</span><span class="pl-k">=</span><span class="pl-vo">model_data</span><span class="pl-k">$</span><span class="pl-vo">classe</span>, <span class="pl-v">p</span><span class="pl-k">=</span><span class="pl-c1">0.75</span>, <span class="pl-v">list</span><span class="pl-k">=</span><span class="pl-c1">FALSE</span> )
+<span class="pl-vo">training</span> <span class="pl-k">&lt;-</span> <span class="pl-vo">model_data</span>[<span class="pl-vo">idx</span>,]
+<span class="pl-vo">testing</span> <span class="pl-k">&lt;-</span> <span class="pl-vo">model_data</span>[<span class="pl-k">-</span><span class="pl-vo">idx</span>,]</pre></div>
+
+<p>We now build 5 random forests with 150 trees each. We make use of parallel processing to build this
+model. I found several examples of how to perform parallel processing with random forests in R, this
+provided a great speedup.</p>
+
+<div class="highlight highlight-r"><pre>registerDoParallel()
+<span class="pl-vo">x</span> <span class="pl-k">&lt;-</span> <span class="pl-vo">training</span>[<span class="pl-k">-</span>ncol(<span class="pl-vo">training</span>)]
+<span class="pl-vo">y</span> <span class="pl-k">&lt;-</span> <span class="pl-vo">training</span><span class="pl-k">$</span><span class="pl-vo">classe</span>
+
+<span class="pl-vo">rf</span> <span class="pl-k">&lt;-</span> foreach(<span class="pl-v">ntree</span><span class="pl-k">=</span>rep(<span class="pl-c1">150</span>, <span class="pl-c1">6</span>), <span class="pl-v">.combine</span><span class="pl-k">=</span><span class="pl-e">randomForest</span><span class="pl-k">::</span><span class="pl-vo">combine</span>, <span class="pl-v">.packages</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">'</span>randomForest<span class="pl-pds">'</span></span>) %<span class="pl-vo">dopar</span>% {
+randomForest(<span class="pl-vo">x</span>, <span class="pl-vo">y</span>, <span class="pl-v">ntree</span><span class="pl-k">=</span><span class="pl-vo">ntree</span>) 
+}</pre></div>
+
+<p>Provide error reports for both training and test data.</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-vo">predictions1</span> <span class="pl-k">&lt;-</span> predict(<span class="pl-vo">rf</span>, <span class="pl-v">newdata</span><span class="pl-k">=</span><span class="pl-vo">training</span>)
+confusionMatrix(<span class="pl-vo">predictions1</span>,<span class="pl-vo">training</span><span class="pl-k">$</span><span class="pl-vo">classe</span>)
+
+
+<span class="pl-vo">predictions2</span> <span class="pl-k">&lt;-</span> predict(<span class="pl-vo">rf</span>, <span class="pl-v">newdata</span><span class="pl-k">=</span><span class="pl-vo">testing</span>)
+confusionMatrix(<span class="pl-vo">predictions2</span>,<span class="pl-vo">testing</span><span class="pl-k">$</span><span class="pl-vo">classe</span>)</pre></div>
+
+<h2>
+<a id="user-content-conclusions" class="anchor" href="#conclusions-and-test-data-submit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusions and Test Data Submit</h2>
+
+<p>As can be seen from the confusion matrix this model is very accurate.  I did experiment with PCA 
+and other models, but did not get as good of accuracy. Because my test data was around 99% 
+accurate I expected nearly all of the submitted test cases to be correct.  It turned out they 
+were all correct.</p>
+
+  </body>
+</html>
+
