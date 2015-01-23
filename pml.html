@@ -1,0 +1,658 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h1
+	{mso-style-link:"Título 1 Car";
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.Ttulo1Car
+	{mso-style-name:"Título 1 Car";
+	mso-style-link:"Título 1";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-GB>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-top:7.5pt;margin-right:0cm;margin-bottom:7.5pt;
+margin-left:0cm;line-height:30.0pt;background:white'><b><span style='font-size:
+29.0pt;font-family:"Helvetica","sans-serif";color:#1F497D'>Practical Machine
+Learning - Prediction Assignment Writeup</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; install.packages(&quot;Hmisc&quot;)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Installing
+package into ‘C:/Users/david/Documents/R/win-library/3.1’</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>(as ‘lib’ is
+unspecified)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>--- Please
+select a CRAN mirror for use in this session ---</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>also
+installing the dependencies ‘Formula’, ‘latticeExtra’, ‘acepack’</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>probando la
+URL 'http://cran.rstudio.com/bin/windows/contrib/3.1/Formula_1.2-0.zip'</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Content type
+'application/zip' length 161675 bytes (157 Kb)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>URL abierta</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>downloaded
+157 Kb</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>probando la
+URL 'http://cran.rstudio.com/bin/windows/contrib/3.1/latticeExtra_0.6-26.zip'</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Content type
+'application/zip' length 2063044 bytes (2.0 Mb)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>URL abierta</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>downloaded
+2.0 Mb</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>probando la
+URL 'http://cran.rstudio.com/bin/windows/contrib/3.1/acepack_1.3-3.3.zip'</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Content type
+'application/zip' length 69249 bytes (67 Kb)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>URL abierta</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>downloaded
+67 Kb</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>probando la
+URL 'http://cran.rstudio.com/bin/windows/contrib/3.1/Hmisc_3.14-6.zip'</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Content type
+'application/zip' length 1566381 bytes (1.5 Mb)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>URL abierta</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>downloaded
+1.5 Mb</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>package
+‘Formula’ successfully unpacked and MD5 sums checked</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>package
+‘latticeExtra’ successfully unpacked and MD5 sums checked</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>package
+‘acepack’ successfully unpacked and MD5 sums checked</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>package
+‘Hmisc’ successfully unpacked and MD5 sums checked</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>The
+downloaded binary packages are in</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>       
+C:\Users\david\AppData\Local\Temp\RtmpSwBNr0\downloaded_packages</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; library(Hmisc)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Loading
+required package: grid</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Loading
+required package: lattice</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Loading
+required package: survival</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Loading
+required package: splines</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Loading
+required package: Formula</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Attaching
+package: ‘Hmisc’</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>The
+following objects are masked from ‘package:base’:</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>   
+format.pval, round.POSIXt, trunc.POSIXt, units</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; library(caret)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Loading
+required package: ggplot2</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Attaching
+package: ‘caret’</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>The
+following object is masked from ‘package:survival’:</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>    cluster</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; library(randomForest)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>randomForest
+4.6-10</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Type
+rfNews() to see new features/changes/bug fixes.</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Attaching
+package: ‘randomForest’</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>The
+following object is masked from ‘package:Hmisc’:</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>    combine</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt;set.seed(2048)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt;options(warn=-1)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt;training_data &lt;-
+read.csv(&quot;pml-training.csv&quot;, na.strings=c(&quot;#DIV/0!&quot;) )</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt;evaluation_data &lt;-
+read.csv(&quot;pml-testing.csv&quot;, na.strings=c(&quot;#DIV/0!&quot;) )</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt;feature_set &lt;- colnames(training_data[colSums(is.na(training_data))
+== 0])[-(1:7)]</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt;model_data &lt;- training_data[feature_set]</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt;feature_set</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Now,
+constructing the model data:</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; idx &lt;- createDataPartition(y=model_data$classe,
+p=0.75, list=FALSE )</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; training &lt;- model_data[idx,]</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; testing &lt;- model_data[-idx,]</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&gt; modFit
+&lt;- train(classe ~ .,method=&quot;rpart&quot;,data=training)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Loading
+required package: rpart</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>And</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&gt; modRF
+&lt;- train(classe ~ .,method=&quot;rf&quot;,data=training,prox=TRUE)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>This last
+one in particular last for long time…</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Then,
+looking for other option I make use of parallel processing to </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>build this
+model. </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>I saw a
+special good example in order to perform parallel processing with random
+forests in R. In particular, the idea is to build 3 random forests with 100
+trees each. This method provides a great speedup.</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; registerDoParallel()</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; x &lt;- training[-ncol(training)]</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; y &lt;- training$classe</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; rf &lt;- foreach(ntree=rep(100, 3),
+.combine=randomForest::combine, .packages='randomForest') %dopar% {</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; randomForest(x, y, ntree=ntree) </span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; }</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; predictions1 &lt;- predict(rf, newdata=training)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; confusionMatrix(predictions1,training$classe)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Confusion
+Matrix and Statistics</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         
+Reference</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prediction   
+A    B    C    D    E</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         A
+4185    0    0    0    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+B    0 2848    0    0    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+C    0    0 2567    0    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+D    0    0    0 2412    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+E    0    0    0    0 2706</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Overall
+Statistics</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                                    
+</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>              
+Accuracy : 1          </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                
+95% CI : (0.9997, 1)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>    No
+Information Rate : 0.2843     </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>    P-Value
+[Acc &gt; NIR] : &lt; 2.2e-16  </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                                    
+</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                 
+Kappa : 1          </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'> Mcnemar's
+Test P-Value : NA         </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Statistics
+by Class:</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                    
+Class: A Class: B Class: C Class: D Class: E</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Sensitivity           
+1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Specificity           
+1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Pos Pred
+Value         1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Neg Pred
+Value         1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prevalence            
+0.2843   0.1935   0.1744   0.1639   0.1839</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Detection
+Rate         0.2843   0.1935   0.1744   0.1639   0.1839</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Detection
+Prevalence   0.2843   0.1935   0.1744   0.1639   0.1839</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Balanced
+Accuracy      1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; predictions2 &lt;- predict(rf, newdata=testing)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b><span
+style='color:red'>&gt; confusionMatrix(predictions2,testing$classe)</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'><b>Confusion
+Matrix and Statistics</b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         
+Reference</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prediction   
+A    B    C    D    E</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         A
+4185    0    0    0    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+B    0 2848    0    0    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+C    0    0 2567    0    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+D    0    0    0 2412    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+E    0    0    0    0 2706</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Overall
+Statistics</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                                    
+</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>              
+Accuracy : 1          </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                
+95% CI : (0.9997, 1)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>    No
+Information Rate : 0.2843     </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>    P-Value
+[Acc &gt; NIR] : &lt; 2.2e-16  </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                                    
+</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                  Kappa
+: 1          </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'> Mcnemar's
+Test P-Value : NA         </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Statistics
+by Class:</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                    
+Class: A Class: B Class: C Class: D Class: E</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Sensitivity           
+1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Specificity           
+1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Pos Pred
+Value         1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Neg Pred
+Value         1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prevalence            
+0.2843   0.1935   0.1744   0.1639   0.1839</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Detection
+Rate         0.2843   0.1935   0.1744   0.1639   0.1839</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Detection
+Prevalence   0.2843   0.1935   0.1744   0.1639   0.1839</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Balanced
+Accuracy      1.0000   1.0000   1.0000   1.0000   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&gt;
+predictions2 &lt;- predict(rf, newdata=testing)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&gt; confusionMatrix(predictions2,testing$classe)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Confusion
+Matrix and Statistics</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         
+Reference</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prediction   
+A    B    C    D    E</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>         A
+1395    0    0    0    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+B    0  944    7    0    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+C    0    5  847   12    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+D    0    0    1  792    0</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>        
+E    0    0    0    0  901</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Overall
+Statistics</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                                         
+</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>              
+Accuracy : 0.9949          </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                
+95% CI : (0.9925, 0.9967)</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>    No
+Information Rate : 0.2845          </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>    P-Value
+[Acc &gt; NIR] : &lt; 2.2e-16       </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                                         
+</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                 
+Kappa : 0.9936          </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'> Mcnemar's
+Test P-Value : NA              </p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Statistics
+by Class:</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>                    
+Class: A Class: B Class: C Class: D Class: E</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Sensitivity           
+1.0000   0.9947   0.9906   0.9851   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Specificity           
+1.0000   0.9982   0.9958   0.9998   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Pos Pred
+Value         1.0000   0.9926   0.9803   0.9987   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Neg Pred
+Value         1.0000   0.9987   0.9980   0.9971   1.0000</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Prevalence            
+0.2845   0.1935   0.1743   0.1639   0.1837</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Detection
+Rate         0.2845   0.1925   0.1727   0.1615   0.1837</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Detection
+Prevalence   0.2845   0.1939   0.1762   0.1617   0.1837</p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt'>Balanced
+Accuracy      1.0000   0.9965   0.9932   0.9924   1.0000</p>
+
+</div>
+
+</body>
+
+</html>
